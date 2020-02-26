@@ -1,28 +1,28 @@
-@startuml User send notification
-actor User
+@startuml Resident send notification
+actor Resident
 participant Frontend
 participant Backend
 database Database
-participant StyrerBackend
+participant ChairmanBackend
 
 
 group Send alert
 activate Frontend
-    User -> Frontend : Press "Varsle"
+    Resident -> Frontend : Press "Varsle"
     Frontend -> Backend : Request page
     activate Backend
     Backend -> Frontend : Opens page
     deactivate Backend
-    User -> Frontend : Choose theme
-    User -> Frontend : Write inputs
-    User -> Frontend : Presses "Confirm"
+    Resident -> Frontend : Choose theme
+    Resident -> Frontend : Write inputs
+    Resident -> Frontend : Presses "Confirm"
 
     Frontend -> Backend : Confirming message
     activate Backend
         alt Confirmed
         Backend -> Database : Save message
         activate Database
-        Database -> StyrerBackend : Send message
+        Database -> ChairmanBackend : Send message
         Database -> Backend : Confirm saved
         deactivate Database
         Backend -> Frontend : Display confirmation
