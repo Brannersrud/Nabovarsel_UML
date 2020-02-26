@@ -1,28 +1,13 @@
-@startuml testtest
+@startuml User send notification
 actor User
 participant Frontend
 participant Backend
 database Database
+participant StyrerBackend
 
-group login
-activate Frontend
-    User -> Frontend : Enter login information
-    Frontend -> Backend : Request validation
-    activate Backend
-    Backend -> Database : Validate login information
-    activate Database
-        alt validation successful
-        Backend <- Database : Validation successful 
-        Frontend <- Backend : Move to main page
-        else validation failure
-        Backend <- Database : Validation failed
-        deactivate Database
-        Frontend <- Backend : Show error message
-        deactivate Backend
-        Frontend -> Frontend : Retry login page
-        end
-end
+
 group Send alert
+activate Frontend
     User -> Frontend : Press "Varsle"
     Frontend -> Backend : Request page
     activate Backend
@@ -37,6 +22,7 @@ group Send alert
         alt Confirmed
         Backend -> Database : Save message
         activate Database
+        Database -> StyrerBackend : Send message
         Database -> Backend : Confirm saved
         deactivate Database
         Backend -> Frontend : Display confirmation
