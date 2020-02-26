@@ -1,0 +1,64 @@
+@startuml testtest
+actor Styrer
+participant Frontend
+participant Backend
+database Database
+
+activate Frontend
+group Go to "Ditt Nabolag"-page
+ User -> Frontend : Enter login information
+    Frontend -> Backend : Request validation
+    activate Backend
+    Backend -> Database : Validate login information
+    activate Database
+        alt validation successful
+        Backend <- Database : Validation successful 
+        Frontend <- Backend : Move to main page
+        else validation failure
+        Backend <- Database : Validation failed
+        deactivate Database
+        Frontend <- Backend : Show error message
+        deactivate Backend
+        Frontend -> Frontend : Retry login page
+        end
+
+Styrer -> Frontend : Press "Ditt nabolag"
+Frontend -> Backend : Request page
+activate Backend
+Backend -> Database : Request residents
+activate Database
+    alt Resident information found 
+    Database -> Backend : Send residents
+    Backend -> Frontend : Display resident list
+    else No resident information
+    Database -> Backend : No residents found
+    deactivate Database
+    Backend -> Frontend : Display no residents
+    deactivate Backend
+    end
+end
+group Add residents to neighborhood
+Styrer -> Frontend : Press "Legg til beboere"
+Frontend -> Backend : Request function
+activate Backend
+Backend -> Frontend : Display inputs
+deactivate Backend
+Styrer -> Frontend : Add resident information
+Styrer -> Frontend : Press "Legg til beboer"
+Frontend -> Backend : Confirm inputs
+activate Backend
+    alt Inputs accepted
+    Backend -> Database : Add resident to database
+    activate Database
+    Database -> Backend : Send updated database
+    deactivate Database
+    Backend -> Frontend : Display resident list
+    else Inputs denied 
+    Backend -> Frontend : Display error
+    deactivate Backend
+    end
+end
+
+
+
+@enduml

@@ -1,6 +1,0 @@
-@startuml testtest
-A -> B : Hello
-B <- A : Helo
-
-
-@enduml
