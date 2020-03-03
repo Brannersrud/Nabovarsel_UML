@@ -1,0 +1,22 @@
+@startwbs Mobile hierarchy 1
+* Mobile application 
+** Login
+*** Authenticate user
+*** Persistent login 
+
+** Edit user information
+*** Password
+*** Email
+*** Telephone 
+*** Delete
+*** Preferred contact
+
+** Activity board
+*** Pinned post
+*** Filter
+** Notifications
+*** Receive push
+*** Notification icon
+
+
+@endwbs 

@@ -1,0 +1,56 @@
+@startuml Add residents
+actor Chairman
+participant Frontend
+participant Backend
+database Database
+
+activate Frontend
+group Go to "Ditt Nabolag"-page
+Chairman -> Frontend : Press "Ditt nabolag"
+Frontend -> Backend : Request page
+activate Backend
+Backend -> Database : Request residents list
+activate Database
+    alt Resident information found 
+    Database -> Backend : Send residents list
+    Backend -> Frontend : Display resident list
+    else No resident information
+    Database -> Backend : No residents found
+    deactivate Database
+    Backend -> Frontend : Display empty list
+    deactivate Backend
+    end
+end
+group Add residents to neighborhood
+Chairman -> Frontend : Press "Legg til beboere"
+Frontend -> Backend : Request function
+activate Backend
+Backend -> Frontend : Display inputs
+deactivate Backend
+Chairman -> Frontend : Add resident information
+Chairman -> Frontend : Press "Legg til beboer"
+Frontend -> Backend : Confirm inputs
+activate Backend
+    alt Inputs accepted
+    Backend -> Database : Add resident to database
+    activate Database
+    Database -> Backend : Send updated database
+    deactivate Database
+    Backend -> Frontend : Display updated list
+    else Inputs denied 
+    Backend -> Frontend : Display error
+    deactivate Backend
+    end
+end
+
+group Cancel
+Chairman -> Frontend : Press "Cancel"
+Frontend -> Backend : Request cancellation
+activate Backend 
+Backend -> Frontend : Go back to list overview
+deactivate Backend
+end
+
+
+
+@enduml

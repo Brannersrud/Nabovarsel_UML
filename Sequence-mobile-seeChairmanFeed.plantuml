@@ -1,0 +1,24 @@
+@startuml Residents can see all posts from chairman
+
+actor Resident
+participant Frontend
+participant API
+database Database
+
+group Open Home Page
+Resident -> Frontend : Logs in
+Frontend -> API : Request "Home-page"
+API -> Database : Request feed-posts
+Database -> API : Receive feed-posts
+API -> API : Control if pinned post
+API -> Frontend : Open "Home-page" with posts
+end 
+
+group Filter out posts not from association
+Resident -> Frontend : Press "Filter"
+Frontend -> API : Request filtered posts
+API -> API : Filter out information
+API -> Frontend : Receive filtered information
+end 
+
+@enduml
