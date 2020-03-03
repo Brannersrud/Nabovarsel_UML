@@ -1,0 +1,37 @@
+@startuml User can edit profile
+actor Resident
+participant Frontend
+participant API
+database Database
+
+group Open "Din Konto"
+    Resident -> Frontend : Press "Din konto"-button
+    Frontend -> API : Request user information 
+    API -> Database : Request data
+    Database -> API : Receive data
+    API -> Frontend : Open "Din konto"
+end
+group Administrate user information
+    Resident -> Frontend : Press "Administrer kontaktinfo"
+    Frontend -> API : Request edit page
+    API -> Frontend : Open edit page
+    Resident -> Frontend : Write new phone number
+    Frontend -> API : Validate new phone number
+    alt Phone number is NOT correct length 
+    API -> Frontend : Error on length, ask for retry
+
+    else Phone number is correct length 
+    API -> Database : Overwrite data
+    Database -> API : Confirm overwrite
+    API -> Frontend : Open "Din konto"-page with confirmation
+end 
+
+group Cancel edit 
+Resident -> Frontend : Press "Cancel"
+Frontend -> API : Request cancellation
+API -> Frontend : Open "Din konto"-page
+end
+
+
+
+@enduml
