@@ -1,0 +1,53 @@
+@startgantt Gantt1
+printscale weekly
+Project starts the 1th of january 2020
+[Signing of contracts] lasts 6 days
+[Project blog] lasts 13 days
+[Preliminary report] lasts 20 days
+[Planning and analysing] lasts 7 days
+[Preliminary report] -> [Planning and analysing]
+
+-- Sprint 1 --
+[Planning and analysing web application] lasts 14 days
+[Planning and analysing] -> [Planning and analysing web application]
+
+-- Sprint 2 -- 
+[Planning and analysing mobile application] lasts 14 days
+[Planning and analysing web application] -> [Planning and analysing mobile application]
+
+-- Sprint 3 --
+[Web application - Increment 1] lasts 14 days
+[Mobile application - Research 1] lasts 14 days
+[Planning and analysing mobile application] -> [Web application - Increment 1]
+[Planning and analysing mobile application] -> [Mobile application - Research 1]
+
+-- Sprint 4 --
+[Mobile application - Increment 1] lasts 14 days
+[Web application - Research 1] lasts 14 days
+[Web application - Increment 1] -> [Mobile application - Increment 1]
+[Mobile application - Research 1] -> [Web application - Research 1]
+
+-- Sprint 5 --
+[Web application - Increment 2] lasts 28 days
+[Mobile application - Increment 2] lasts 28 days
+
+[Web application - Research 1] -> [Web application - Increment 2]
+[Mobile application - Increment 1] -> [Mobile application - Increment 2]
+
+[Heuristic evaluation] lasts 7 days and starts 7 days after [Mobile application - Increment 2]'s start
+
+-- Sprint 6 --
+[Web application - Increment 3] lasts 21 days 
+[Mobile application - Increment 3] lasts 21 days
+
+[Web application - Increment 2] -> [Web application - Increment 3]
+[Mobile application - Increment 2] -> [Mobile application - Increment 3]
+
+[User testing] lasts 7 days and starts 7 days after [Mobile application - Increment 3]'s start 
+-- Sprint 7 --
+[Acceptance-testing - Web] lasts 7 days
+[Acceptance-testing - Mobile] lasts 7 days
+[Web application - Increment 3] -> [Acceptance-testing - Web]
+[Mobile application - Increment 3] -> [Acceptance-testing - Mobile]
+
+@endgantt

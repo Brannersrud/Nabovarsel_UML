@@ -1,34 +1,32 @@
 @startuml Resident send notification
 actor Resident
 participant Frontend
-participant Backend
+participant API
 database Database
-participant ChairmanBackend
 
 
 group Send alert
 activate Frontend
     Resident -> Frontend : Press "Varsle"
-    Frontend -> Backend : Request page
-    activate Backend
-    Backend -> Frontend : Opens page
-    deactivate Backend
+    Frontend -> API : Request page
+    activate API
+    API -> Frontend : Opens page
+    deactivate API
     Resident -> Frontend : Choose theme
     Resident -> Frontend : Write inputs
     Resident -> Frontend : Presses "Confirm"
 
-    Frontend -> Backend : Confirming message
-    activate Backend
+    Frontend -> API : Confirming message
+    activate API
         alt Confirmed
-        Backend -> Database : Save message
+        API -> Database : Save message
         activate Database
-        Database -> ChairmanBackend : Send message
-        Database -> Backend : Confirm saved
+        Database -> API : Confirm saved
         deactivate Database
-        Backend -> Frontend : Display confirmation
+        API -> Frontend : Display confirmation
         else Denied 
-        Backend -> Frontend : Display error message
-        deactivate Backend
+        API -> Frontend : Display error message
+        deactivate API
         end
 end
 

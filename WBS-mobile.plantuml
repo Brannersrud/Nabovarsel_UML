@@ -1,20 +1,24 @@
 @startwbs Mobile hierarchy 1
 * Mobile application 
-** Login
+** Login-page
 *** Authenticate user
 *** Persistent login 
 
-** Edit user information
-*** Password
-*** Email
-*** Telephone 
+** Home-page
+*** Activity board
+**** Pinned post
+**** Filter
+
+** Profile-page
 *** Delete
 *** Preferred contact
+*** Edit information
+**** Password
+**** Email
+**** Telephone 
 
-** Activity board
-*** Pinned post
-*** Filter
-** Notifications
+
+** Notification-page
 *** Receive push
 *** Notification icon
 

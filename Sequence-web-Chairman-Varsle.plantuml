@@ -1,42 +1,41 @@
 @startuml Chairman send notification
 actor Chairman
 participant Frontend
-participant Backend
+participant API
 database Database
-participant ResidentBackend
 
 group Send alerts
 activate Frontend
     Chairman -> Frontend : Press "Varsle"
-    Frontend -> Backend : Request page
-activate Backend
-    Backend -> Frontend : Open page
-deactivate Backend
+    Frontend -> API : Request page
+activate API
+    API -> Frontend : Open page
+deactivate API
 
     Chairman -> Frontend : Choose receiver
     Chairman -> Frontend : Choose alert-type
     Chairman -> Frontend : Write input
-    Frontend -> Backend : Create alert
-activate Backend
-    Backend -> Database : Save alert
+    Frontend -> API : Create alert
+activate API
+    API -> Database : Save alert
 activate Database
-        Database -> ResidentBackend : Send push alert
-    Database -> Backend : Confirm saved
+    Database -> API : Confirm saved
 deactivate Database
-    Backend -> Backend : Send SMS
-    Backend -> Backend : Send e-mail
-    Backend -> Frontend : Display confirmation
-deactivate Backend
+    API -> API : Send push alert to user
+    API -> API : Send SMS
+    API -> API : Send e-mail
+    API -> Frontend : Display confirmation
+deactivate API
     Chairman -> Frontend : Press "Ok"
     Frontend -> Frontend : Refresh page
 end
 
 group Cancel 
     Chairman -> Frontend : Press "Avbryt"
-    Frontend -> Backend : Request cancellation
-activate Backend
-    Backend -> Frontend : Redirect to main page
-deactivate Backend
+    Frontend -> API : Request cancellation
+activate API
+    API -> Frontend : Redirect to main page
+deactivate API
 end
 
 

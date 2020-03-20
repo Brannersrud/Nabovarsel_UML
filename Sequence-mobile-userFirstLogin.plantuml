@@ -1,0 +1,45 @@
+@startuml User login for first time DENNE MÅ OPPDATERES
+actor Resident
+participant Frontend
+participant API
+database Database
+
+activate Frontend
+API -> Resident : Receive temporary login information
+Resident -> Frontend : Go to page
+Resident -> Frontend : Write login information
+Resident -> Frontend : Press "Log in"-button
+Frontend -> API : Request validation
+activate API
+API -> Database : Validate login information
+activate Database
+alt Validation successful
+Database -> API : Validation successful
+API -> Frontend : Open "Home-page"
+
+else "First Login"-data = Null
+Database -> API : Validation successful
+deactivate Database
+API -> Frontend : Open "New user-page"
+deactivate API
+Resident -> Frontend : Write phone number
+Resident -> Frontend : Write name
+Resident -> Frontend : Write new password
+Resident -> Frontend : Rewrite new password
+Resident -> Frontend : Press "Save account"
+Frontend -> API : Request validation
+activate API
+    alt Missing information
+    API -> Frontend : Error on what's missing
+    else All information gathered
+    API -> Database : Update user information
+    activate Database
+    Database -> API : Confirm successful update
+    deactivate Database
+    API -> Frontend : Open "Home-page"
+    deactivate API
+    end
+end
+
+
+@enduml

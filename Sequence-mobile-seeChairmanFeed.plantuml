@@ -6,19 +6,28 @@ participant API
 database Database
 
 group Open Home Page
+activate Frontend
 Resident -> Frontend : Logs in
 Frontend -> API : Request "Home-page"
+activate API
 API -> Database : Request feed-posts
+activate Database
+deactivate API
 Database -> API : Receive feed-posts
+deactivate Database
+activate API
 API -> API : Control if pinned post
 API -> Frontend : Open "Home-page" with posts
+deactivate API
 end 
 
 group Filter out posts not from association
 Resident -> Frontend : Press "Filter"
 Frontend -> API : Request filtered posts
+activate API
 API -> API : Filter out information
 API -> Frontend : Receive filtered information
+deactivate API
 end 
 
 @enduml

@@ -1,0 +1,58 @@
+@startgantt Gantt1
+printscale weekly
+Project starts the 1th of January 2020
+[Signing of contracts] lasts 6 days
+[Project blog] lasts 13 days
+[Preliminary report] lasts 20 days
+[Planning and analysing] lasts 7 days
+[Preliminary report] -> [Planning and analysing]
+
+-- Sprint 1 --
+[Web application - Increment 1] lasts 14 days
+[Mobile application - Research 1] lasts 14 days
+[Planning and analysing] -> [Web application - Increment 1]
+[Planning and analysing] -> [Mobile application - Research 1]
+
+-- Sprint 2 --
+[Mobile application - Increment 1] lasts 14 days
+[Web application - Research 1] lasts 14 days
+[Web application - Increment 1] -> [Mobile application - Increment 1]
+[Mobile application - Research 1] -> [Web application - Research 1]
+
+-- Sprint 3 --
+[Web application - Increment 2] lasts 14 days
+[Mobile application - Research 2] lasts 14 days
+[Mobile application - Increment 1] -> [Web application - Increment 2]
+[Web application - Research 1] -> [Mobile application - Research 2]
+
+-- Sprint 4 --
+[Mobile application - Increment 2] lasts 14 days
+[Web application - Research 2] lasts 14 days
+[Web application - Increment 2] -> [Mobile application - Increment 2]
+[Mobile application - Research 2] -> [Web application - Research 2]
+
+-- Sprint 5 --
+[Web application - Increment 3] lasts 14 days
+[Mobile application - Research 3] lasts 14 days
+[Web application - Research 2] -> [Web application - Increment 3]
+[Mobile application - Increment 2] -> [Mobile application - Research 3]
+
+-- Sprint 6 --
+[Web application - Research 3] lasts 14 days
+[Mobile application - Research 4] lasts 14 days
+[Mobile application - Increment 3] lasts 14 days
+
+[Web application - Increment 3] -> [Web application - Research 3]
+[Mobile application - Research 3] -> [Mobile application - Research 4]
+[Mobile application - Research 3] -> [Mobile application - Increment 3]
+
+-- Sprint 7 --
+[Web application - Increment 4] lasts 14 days
+[Acceptance-testing - Mobile] lasts 7 days
+[Acceptance-testing - Web] lasts 7 days
+
+[Mobile application - Increment 3] -> [Web application - Increment 4]
+[Mobile application - Increment 3] -> [Acceptance-testing - Mobile]
+[Acceptance-testing - Mobile] -> [Acceptance-testing - Web]
+
+@endgantt

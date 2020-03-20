@@ -25,7 +25,7 @@ group Administrate user information
     Database -> API : Confirm overwrite
     API -> Frontend : Open "Din konto"-page with confirmation
 end 
-
+end 
 group Cancel edit 
 Resident -> Frontend : Press "Cancel"
 Frontend -> API : Request cancellation

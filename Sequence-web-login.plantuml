@@ -1,28 +1,26 @@
 @startuml Login
 actor User
 participant Frontend
-participant Backend
+participant API
 database Database
 
 group Log in with token
 activate Frontend
     User -> Frontend : Request token
         alt Token found 
-        Frontend -> Backend : Validate token
-        activate Backend 
-        Backend -> Database : Find token
+        Frontend -> API : Validate token
+        activate API 
+        API -> Database : Find token
         activate Database 
-            alt Token is in database
-            Database -> Backend : Return matching user
-            Backend -> Frontend : Open main page
+            
+            Database -> API : Return matching user
+            API -> Frontend : Open main page
             else Token not in database 
-            Database ->x Backend : Return error
+            Database ->x API : Return error
             deactivate Database 
-            Backend -> Frontend : Open loginpage
-            deactivate Backend
-            end
-        else Token not found 
-        Frontend -> Frontend : Open loginpage
+            API -> Frontend : Open loginpage
+            deactivate API
+            
 
     end
 end 
@@ -31,22 +29,19 @@ group Log in without token
     User -> Frontend : Accept to be remembered
     User -> Frontend : Press "Log in"
 
-    Frontend -> Backend : Request validation
-    activate Backend
-    Backend -> Database : Validate login information
+    Frontend -> API : Request validation
+    activate API
+    API -> Database : Validate login information
     activate Database
         alt validation successful
-        Backend <- Database : Validation successful 
-        Backend -> Backend : Create token 
-        Backend -> Database : Add token to database
-        Database -> Backend : Confirm token added 
-        Backend -> User : Add token to user
-        Frontend <- Backend : Move to main page
+        API <- Database : Validation successful 
+        API -> User : Add token to user
+        Frontend <- API : Move to main page
         else validation failure
-        Backend x<- Database : Validation failed
+        API x<- Database : Validation failed
         deactivate Database
-        Frontend <- Backend : Show error message
-        deactivate Backend
+        Frontend <- API : Show error message
+        deactivate API
         Frontend -> Frontend : Retry login page
         end
 end

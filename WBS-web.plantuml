@@ -1,0 +1,39 @@
+@startwbs 
+
+* Web application 
+** Landing-page
+*** Product page
+*** Service page
+
+** Login-page
+*** Authenticate user
+*** Persistent login
+
+** Neighborhood-page
+*** Show residents
+*** Add residents
+*** Edit residents
+*** Delete residents 
+
+
+** Profile-page
+*** Edit information
+**** Password
+**** Email
+**** Telephone 
+
+** Notification-page
+*** Notifications
+**** Send SMS
+**** Send e-mail 
+**** Send push
+*** Activity board 
+**** Post on feed 
+**** Edit post
+**** Delete post
+
+** Statistic-page
+*** Show statistics
+*** Filter statistics
+
+@endwbs
